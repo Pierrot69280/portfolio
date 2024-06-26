@@ -24,6 +24,9 @@ class Projet
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
+    #[ORM\OneToOne(mappedBy: 'projet', cascade: ['persist', 'remove'])]
+    private ?Image $image = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -37,7 +40,6 @@ class Projet
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -49,7 +51,6 @@ class Projet
     public function setDescription(string $description): static
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -61,6 +62,22 @@ class Projet
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+        return $this;
+    }
+
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Image $image): static
+    {
+        $this->image = $image;
+
+        // Assurez-vous de mettre à jour le côté propriétaire de la relation
+        if ($image !== null) {
+            $image->setProjet($this);
+        }
 
         return $this;
     }

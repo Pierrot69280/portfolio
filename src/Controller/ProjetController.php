@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\Projet;
+use App\Form\ImageType;
 use App\Form\ProjetType;
 use App\Repository\ProjetRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -45,10 +47,10 @@ class ProjetController extends AbstractController
     }
 
     #[Route('/delete/{id}', name:'app_delete')]
-    public function delete(Projet $article, EntityManagerInterface $manager):Response
+    public function delete(Projet $projet, EntityManagerInterface $manager):Response
     {
 
-        $manager->remove($article);
+        $manager->remove($projet);
         $manager->flush();
         return $this->redirectToRoute("app_home");
 
@@ -68,6 +70,19 @@ class ProjetController extends AbstractController
 
         return $this->render('projet/edit.html.twig', [
             'formulaire' => $formulaire->createView()
+        ]);
+    }
+
+    #[Route('/projet/images/{id}', name:"projet_image")]
+    public function addImage(Projet $projet):Response
+    {
+        $image = new Image();
+        $formImage = $this->createForm(ImageType::class, $image);
+
+        return $this->render("projet/image.html.twig", [
+            "projet"=>$projet,
+            'formImage'=>$formImage->createView()
+
         ]);
     }
 }

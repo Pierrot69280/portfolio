@@ -8,12 +8,16 @@
                     <div class="col">
                         <div class="card h-100 bg-orange">
                             <div class="card-body">
+                                <div class="align-items-center">
+                                    {% include 'image/image_or_not_image.html.twig' with {object:projet} %}
+                                </div>
                                 <h5 class="card-title">{{ projet.name }}</h5>
                                 <h6 class="card-text mt-3">Description : {{ projet.description }}</h6>
                                 <hr>
                                 <a href="#" class="btn noir text-white" data-bs-toggle="modal" data-bs-target="#projetModal{{ loop.index }}" data-bs-name="{{ projet.name }}" data-bs-description="{{ projet.description }}">Voir</a>
                                 <a class="btn" href="{{ path('app_delete', {id:projet.id} ) }}"><i class="bi bi-trash"></i></a>
                                 <a class="btn" href="{{ path('app_edit', {id:projet.id} ) }}"><i class="bi bi-pencil-square"></i></a>
+                                <h6 class="card-text mt-3">Catégorie : {{ projet.category.name }}</h6>
                             </div>
                         </div>
                     </div>
@@ -31,6 +35,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" id="modalBody{{ loop.index }}">
+                        {% include 'image/image_or_not_image.html.twig' with {object:projet} %}
                         <h5 class="card-title">{{ projet.name }}</h5>
                         <h6 class="card-text mt-3">Description : {{ projet.description }}</h6>
                     </div>
@@ -41,5 +46,5 @@
             </div>
         </div>
     {% endfor %}
-    <a href="{{ path('app_create') }}" class="btn btn-sm bg-orange text-white text-center d-block mx-auto mt-5" style="width: 200px;">Ajouter un nouveau Projet</a>
+    <a href="{{ path('app_create') }}" class="btn btn-sm bg-orange text-white text-center d-block mx-auto mt-5 mb-5" style="width: 200px;">Ajouter un nouveau Projet</a>
 {% endblock %}
