@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Articles{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for projet in projets %}
+                    <div class="col">
+                        <div class="card h-100 bg-orange">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ projet.name }}</h5>
+                                <h6 class="card-text mt-3">Description : {{ projet.description }}</h6>
+                                <hr>
+                                <a href="#" class="btn noir text-white" data-bs-toggle="modal" data-bs-target="#projetModal" data-name="{{ projet.name }}" data-description="{{ projet.description }}">Voir</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="projetModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                {% for projet in projets %}
+                <div class="modal-body" id="modalBody">
+                    <h5 class="card-title">{{ projet.name }}</h5>
+                    <h6 class="card-text mt-3">Description : {{ projet.description }}</h6>
+                </div>
+                {% endfor %}
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
