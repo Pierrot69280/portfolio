@@ -80,6 +80,52 @@ body {
     margin-top: 200px;
 }
 
+.contact-form {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    width: 700px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.contact-form h1 {
+    color: #FA7268;
+    margin-bottom: 5px;
+}
+.contact-form p {
+    color: #FA7268;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.contact-form input, .contact-form textarea {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+}
+.contact-form button {
+    background-color: #FA7268;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.contact-form button:hover {
+    background-color: #E66058;
+}
+.contactorange {
+    background-color: #EC7969;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+
+
+
 
 
 
